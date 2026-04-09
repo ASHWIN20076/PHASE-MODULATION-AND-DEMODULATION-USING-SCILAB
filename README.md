@@ -77,10 +77,58 @@ Execute the code.
 Debug errors if any and re-run.
 Observe the generated waveforms.
 
-MODEL GRAPHS
+PROGRAM
+
+```
+clc;
+clear;
+close;
+
+Ac = 7.4;          // Carrier amplitude
+Am = 3.7;        // Message amplitude
+Fc = 1660;        // Carrier frequency
+Fm = 166;         // Message frequency
+Fs = 16600;       // Sampling frequency
+kp = %pi/4;       // Phase sensitivity constant
+
+t = 0:1/Fs:2/Fm;  // Time vector (two cycles of message)
+
+// Message signal
+E1 = Am * sin(2*%pi*Fm*t);
+subplot(3,1,1);
+plot(t, E1);
+xlabel("Time (s)");
+ylabel("Amplitude");
+title("Message Signal");
+
+// Carrier signal
+E2 = Ac * sin(2*%pi*Fc*t);
+subplot(3,1,2);
+plot(t, E2);
+xlabel("Time (s)");
+ylabel("Amplitude");
+title("Carrier Signal");
+
+// Phase Modulated signal
+E3 = Ac * sin(2*%pi*Fc*t + kp*E1);
+subplot(3,1,3);
+plot(t, E3);
+xlabel("Time (s)");
+ylabel("Amplitude");
+title("Phase Modulated Signal");
+
+xgrid();
+```
+
+GRAPH 
+
+![WhatsApp Image 2026-04-07 at 09 37 53 (1)](https://github.com/user-attachments/assets/10a55a11-26e4-44b5-9b57-0ac6e29493a7)
 
 TABULATIONS
 
-CALCULATIONS
+![WhatsApp Image 2026-04-09 at 08 43 04 (2)](https://github.com/user-attachments/assets/e86977d7-72b8-4d9b-9c1e-2aa52f23ba8a)
+
 
 RESULT
+
+Thus the phase modulation and demodulation is experimentally done and the output is verified.
